@@ -149,8 +149,8 @@ function gameInit() {
     triviaGame.questions.forEach(question => {
         question.answers = triviaGame.shuffle(question.answers);
     });
-    cardFront(0, 0);
-    cardBack(1, 1400);
+    cardFront(0, 1400);
+    cardBack(1, 0);
     triviaGame.currentQuestion = 1;
     time = 20;
     countdown = setInterval(timer, 1000);
@@ -367,8 +367,8 @@ function resetGame() {
     front.show();
     back.show();
     // setup cards
-    cardFront(0, 0);
-    cardBack(1, 1400);
+    cardFront(0, 1400);
+    cardBack(1, 0);
     triviaGame.currentQuestion = 1;
 }
 
@@ -404,9 +404,24 @@ function showText(target, message, index, interval) {
     }
 }
 
+// start the game and play Mr Robot Theme Song
+function start() {
+    var content = `
+    <div id="Start">
+        <img src="assets/images/fsociety.jpg" alt="F Society" />
+        <p id="Msg"></p>
+        <button id="Start" class="btn btn-trivia" onclick="gameInit()">Start</button>
+        <script>showText("#Msg", "${triviaGame.startMsg}", 0, 200);</script>
+    </div>
+    `;
+    front.html(content);
+}
+
 // bind click function to dynamically created radio buttons
 $(document).on('click', '.radio', function() {
     console.log('you clicked me.');
     $('.radio').removeClass('selected');
     $(this).addClass('selected');
 });
+
+start();
