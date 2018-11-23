@@ -417,22 +417,6 @@ function start() {
     back.html(content);
 }
 
-// Checks if on mobile (screen width)
-function mobile_check() {
-    var w = window,
-        d = document,
-        de = d.documentElement,
-        b = d.getElementsByTagName('body')[0],
-        width = w.innerWidth || e.clientWidth || g.clientWidth,
-        height = w.innerHeight || e.clientHeight || g.clientHeight;
-    // console.log("w.innerWidth || e.clientWidth || g.clientWidth" + width);
-    // if mobile run mobile functions
-    if (width <= 768) {
-        console.log("Is Mobile");
-
-    }
-}
-
 // bind click function to dynamically created radio buttons
 $(document).on('click', '.radio', function() {
     console.log('you clicked me.');
