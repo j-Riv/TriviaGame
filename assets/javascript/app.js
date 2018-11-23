@@ -1,4 +1,5 @@
 var triviaGame = {
+    isMobile: false,
     correctCount: 0,
     incorrectCount: 0,
     startMsg: 'Hello Friend',
@@ -139,6 +140,12 @@ var countdown;
 var flipMe;
 
 function gameInit() {
+    var t;
+    if (triviaGame.isMobile) {
+        t = 0;
+    } else {
+        t = 1400;
+    }
     // audio
     var audio = new Audio('assets/sounds/mr-robot-theme.mp3');
     cardInner.toggleClass('flipped');
@@ -150,7 +157,7 @@ function gameInit() {
         question.answers = triviaGame.shuffle(question.answers);
     });
     cardFront(0, 0);
-    cardBack(1, 1400);
+    cardBack(1, t);
     triviaGame.currentQuestion = 1;
     time = 20;
     countdown = setInterval(timer, 1000);
@@ -159,6 +166,9 @@ function gameInit() {
 // create the front of the card
 // f: question index, t: time delay
 function cardFront(f, t) {
+    if (triviaGame.isMobile) {
+        t = 0;
+    }
     var frontContent = `
             <input id="fQid" class="hidden" type="text" name="question-index" value="${f}" hidden>
             <h2 class="the-question">${triviaGame.questions[f].question}</h2>
@@ -174,6 +184,9 @@ function cardFront(f, t) {
 // create the back of the card
 // f: question index, t: time delay
 function cardBack(b, t) {
+    if (triviaGame.isMobile) {
+        t = 0;
+    }
     var backContent = `
             <input id="bQid" class="hidden" type="text" name="question-index" value="${b}" hidden>
             <h2 class="the-question">${triviaGame.questions[b].question}</h2>
@@ -309,6 +322,12 @@ function timeUp() {
 
 // flips card
 function flip() {
+    var t;
+    if (triviaGame.isMobile) {
+        t = 0;
+    } else {
+        t = 1400;
+    }
     // flip card
     cardInner.toggleClass('flipped');
     // increase current question & current question index
@@ -318,10 +337,10 @@ function flip() {
     if (triviaGame.currentQuestion < triviaGame.questions.length) {
         var nextQuestion = triviaGame.currentQuestion;
         if (cardInner.hasClass('flipped')) {
-            cardFront(nextQuestion, 1400);
+            cardFront(nextQuestion, t);
             triviaGame.currentSide = 'Front';
         } else {
-            cardBack(nextQuestion, 1400);
+            cardBack(nextQuestion, t);
             triviaGame.currentSide = 'Back';
         }
     }
@@ -350,6 +369,12 @@ function gameOver() {
 
 // resets game so you don't have to refresh
 function resetGame() {
+    var t;
+    if (triviaGame.isMobile) {
+        t = 0;
+    } else {
+        t = 1400;
+    }
     // reset variables
     triviaGame.correctCount = 0;
     triviaGame.incorrectCount = 0;
@@ -363,12 +388,12 @@ function resetGame() {
     triviaGame.questions.forEach(question => {
         question.answers = triviaGame.shuffle(question.answers);
     });
+    // setup cards
+    cardFront(0, 0);
+    cardBack(1, t);
     // display first card
     front.show();
     back.show();
-    // setup cards
-    cardFront(0, 0);
-    cardBack(1, 700);
     triviaGame.currentQuestion = 1;
 }
 
@@ -417,6 +442,24 @@ function start() {
     back.html(content);
 }
 
+// Checks if on mobile (screen width)
+function mobileCheck() {
+    var w = window,
+        d = document,
+        de = d.documentElement,
+        b = d.getElementsByTagName('body')[0],
+        width = w.innerWidth || e.clientWidth || g.clientWidth,
+        height = w.innerHeight || e.clientHeight || g.clientHeight;
+    // console.log("w.innerWidth || e.clientWidth || g.clientWidth" + width);
+    // if mobile run mobile functions
+    if (width <= 768) {
+        console.log("Is Mobile");
+        triviaGame.isMobile = true;
+    } else {
+        triviaGame.isMobile = false;
+    }
+}
+
 // bind click function to dynamically created radio buttons
 $(document).on('click', '.radio', function() {
     console.log('you clicked me.');
@@ -424,4 +467,5 @@ $(document).on('click', '.radio', function() {
     $(this).addClass('selected');
 });
 
+mobileCheck();
 start();
