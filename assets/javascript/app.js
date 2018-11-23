@@ -149,8 +149,8 @@ function gameInit() {
     triviaGame.questions.forEach(question => {
         question.answers = triviaGame.shuffle(question.answers);
     });
-    cardFront(0, 1400);
-    cardBack(1, 0);
+    cardFront(0, 0);
+    cardBack(1, 1400);
     triviaGame.currentQuestion = 1;
     time = 20;
     countdown = setInterval(timer, 1000);
@@ -367,8 +367,8 @@ function resetGame() {
     front.show();
     back.show();
     // setup cards
-    cardFront(0, 1400);
-    cardBack(1, 0);
+    cardFront(0, 0);
+    cardBack(1, 1400);
     triviaGame.currentQuestion = 1;
 }
 
@@ -414,7 +414,23 @@ function start() {
         <script>showText("#Msg", "${triviaGame.startMsg}", 0, 200);</script>
     </div>
     `;
-    front.html(content);
+    back.html(content);
+}
+
+// Checks if on mobile (screen width)
+function mobile_check() {
+    var w = window,
+        d = document,
+        de = d.documentElement,
+        b = d.getElementsByTagName('body')[0],
+        width = w.innerWidth || e.clientWidth || g.clientWidth,
+        height = w.innerHeight || e.clientHeight || g.clientHeight;
+    // console.log("w.innerWidth || e.clientWidth || g.clientWidth" + width);
+    // if mobile run mobile functions
+    if (width <= 768) {
+        console.log("Is Mobile");
+
+    }
 }
 
 // bind click function to dynamically created radio buttons
