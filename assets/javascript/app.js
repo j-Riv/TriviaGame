@@ -1,3 +1,111 @@
+// var triviaGame = {
+//     correctCount: 0,
+//     incorrectCount: 0,
+//     correctAnswerMsg: 'You are correct',
+//     incorrectAnswerMsg: 'You have selected the wrong answer',
+//     timesUpMsg: 'You are too slow, you have run out of time',
+//     gameOverMsg: '',
+//     currentSide: 'front',
+//     currentQuestion: 0,
+//     currentQuestionIdx: 0,
+//     questions: [{
+//             question: 'Who plays the character of Elliott Alderson in the hit tv show Mr. Robot?',
+//             answer1: 'Christian Slater',
+//             answer2: 'Michael Cristofer',
+//             answer3: 'Rami Malek',
+//             answer4: 'Martin Wallström',
+//             correctAnswer: 'Rami Malek'
+//         },
+//         {
+//             question: 'What Linux distro does Mr Robot use?',
+//             answer1: 'Ubuntu',
+//             answer2: 'Arch Linux',
+//             answer3: 'Kali Linux',
+//             answer4: 'Fedora',
+//             correctAnswer: 'Kali Linux'
+//         },
+//         {
+//             question: 'What is the name of the group of hackers Mr. Robot created?',
+//             answer1: 'Anonymous',
+//             answer2: 'E Corp',
+//             answer3: 'LulzSec',
+//             answer4: 'F Society',
+//             correctAnswer: 'F Society'
+//         },
+//         {
+//             question: 'What is Elliot Alderson\'s dog named?',
+//             answer1: 'Skipper',
+//             answer2: 'Spot',
+//             answer3: 'Flipper',
+//             answer4: 'Hunter',
+//             correctAnswer: 'Flipper'
+//         },
+//         {
+//             question: 'What is the name of the shows creator?',
+//             answer1: 'George Lucas',
+//             answer2: 'Steven Spielberg',
+//             answer3: 'Quentin Tarentino',
+//             answer4: 'Sam Esmail',
+//             correctAnswer: 'Sam Esmail'
+//         },
+//         {
+//             question: 'What is Elliots day job?',
+//             answer1: 'Hacker',
+//             answer2: 'Cyber Security Engineer',
+//             answer3: 'Web Developer',
+//             answer4: 'Receptionist',
+//             correctAnswer: 'Cyber Security Engineer'
+//         },
+//         {
+//             question: 'Who implemented the hack that Elliot found on Allsafe\'s Servers in season 1',
+//             answer1: 'Tyrell Wellick',
+//             answer2: 'Darlene',
+//             answer3: 'Elliot',
+//             answer4: 'Gideon',
+//             correctAnswer: 'Elliot'
+//         },
+//         {
+//             question: 'Who is Mr. Robot?',
+//             answer1: 'Elliot\'s Dad',
+//             answer2: 'A delusion of Elliot\'s Mind',
+//             answer3: 'Elliot',
+//             answer4: 'All of the Above',
+//             correctAnswer: 'All of the Above'
+//         },
+//         {
+//             question: 'What did the Five/Nine hack actually do?',
+//             answer1: 'Fried the electrical grid',
+//             answer2: 'Hijacked nuclear missiles',
+//             answer3: 'Erased everyone\'s financial debt',
+//             answer4: 'Crashed all the computers on earth',
+//             correctAnswer: 'Erased everyone\'s financial debt'
+//         },
+//         {
+//             question: 'What is "Stage 2" of Elliot\'s plan',
+//             answer1: 'Hack the Chinese Government',
+//             answer2: 'Blow up the buildings housing E Corp\'s paper records',
+//             answer3: 'Delete their identities and disappear',
+//             answer4: 'Open an arcade at Coney Island',
+//             correctAnswer: 'Blow up the buildings housing E Corp\'s paper records'
+//         }
+//     ],
+//     shuffle: function(arr) {
+//         var currentIdx = arr.length;
+//         var temp;
+//         var randomIdx;
+//         // while there remain elements to shuffle
+//         while (0 !== currentIdx) {
+//             randomIdx = Math.floor(Math.random() * currentIdx);
+//             currentIdx -= 1;
+//             // And swap it with the current element.
+//             temp = arr[currentIdx];
+//             arr[currentIdx] = arr[randomIdx];
+//             arr[randomIdx] = temp;
+//         }
+//         return arr;
+//     }
+// }
+
 var triviaGame = {
     correctCount: 0,
     incorrectCount: 0,
@@ -10,82 +118,102 @@ var triviaGame = {
     currentQuestionIdx: 0,
     questions: [{
             question: 'Who plays the character of Elliott Alderson in the hit tv show Mr. Robot?',
-            answer1: 'Christian Slater',
-            answer2: 'Michael Cristofer',
-            answer3: 'Rami Malek',
-            answer4: 'Martin Wallström',
+            answers: [
+                'Christian Slater',
+                'Michael Cristofer',
+                'Rami Malek',
+                'Martin Wallström'
+            ],
             correctAnswer: 'Rami Malek'
         },
         {
             question: 'What Linux distro does Mr Robot use?',
-            answer1: 'Ubuntu',
-            answer2: 'Arch Linux',
-            answer3: 'Kali Linux',
-            answer4: 'Fedora',
+            answers: [
+                'Ubuntu',
+                'Arch Linux',
+                'Kali Linux',
+                'Fedora',
+            ],
             correctAnswer: 'Kali Linux'
         },
         {
             question: 'What is the name of the group of hackers Mr. Robot created?',
-            answer1: 'Anonymous',
-            answer2: 'E Corp',
-            answer3: 'LulzSec',
-            answer4: 'F Society',
+            answers: [
+                'Anonymous',
+                'E Corp',
+                'LulzSec',
+                'F Society',
+            ],
             correctAnswer: 'F Society'
         },
         {
             question: 'What is Elliot Alderson\'s dog named?',
-            answer1: 'Skipper',
-            answer2: 'Spot',
-            answer3: 'Flipper',
-            answer4: 'Hunter',
+            answers: [
+                'Skipper',
+                'Spot',
+                'Flipper',
+                'Hunter',
+            ],
             correctAnswer: 'Flipper'
         },
         {
             question: 'What is the name of the shows creator?',
-            answer1: 'George Lucas',
-            answer2: 'Steven Spielberg',
-            answer3: 'Quentin Tarentino',
-            answer4: 'Sam Esmail',
+            answers: [
+                'George Lucas',
+                'Steven Spielberg',
+                'Quentin Tarentino',
+                'Sam Esmail',
+            ],
             correctAnswer: 'Sam Esmail'
         },
         {
             question: 'What is Elliots day job?',
-            answer1: 'Hacker',
-            answer2: 'Cyber Security Engineer',
-            answer3: 'Web Developer',
-            answer4: 'Receptionist',
+            answers: [
+                'Hacker',
+                'Cyber Security Engineer',
+                'Web Developer',
+                'Receptionist',
+            ],
             correctAnswer: 'Cyber Security Engineer'
         },
         {
             question: 'Who implemented the hack that Elliot found on Allsafe\'s Servers in season 1',
-            answer1: 'Tyrell Wellick',
-            answer2: 'Darlene',
-            answer3: 'Elliot',
-            answer4: 'Gideon',
+            answers: [
+                'Tyrell Wellick',
+                'Darlene',
+                'Elliot',
+                'Gideon',
+            ],
             correctAnswer: 'Elliot'
         },
         {
             question: 'Who is Mr. Robot?',
-            answer1: 'Elliot\'s Dad',
-            answer2: 'A delusion of Elliot\'s Mind',
-            answer3: 'Elliot',
-            answer4: 'All of the Above',
+            answers: [
+                'Elliot\'s Dad',
+                'A delusion of Elliot\'s Mind',
+                'Elliot',
+                'All of the Above',
+            ],
             correctAnswer: 'All of the Above'
         },
         {
             question: 'What did the Five/Nine hack actually do?',
-            answer1: 'Fried the electrical grid',
-            answer2: 'Hijacked nuclear missiles',
-            answer3: 'Erased everyone\'s financial debt',
-            answer4: 'Crashed all the computers on earth',
+            answers: [
+                'Fried the electrical grid',
+                'Hijacked nuclear missiles',
+                'Erased everyone\'s financial debt',
+                'Crashed all the computers on earth',
+            ],
             correctAnswer: 'Erased everyone\'s financial debt'
         },
         {
             question: 'What is "Stage 2" of Elliot\'s plan',
-            answer1: 'Hack the Chinese Government',
-            answer2: 'Blow up the buildings housing E Corp\'s paper records',
-            answer3: 'Delete their identities and disappear',
-            answer4: 'Open an arcade at Coney Island',
+            answers: [
+                'Hack the Chinese Government',
+                'Blow up the buildings housing E Corp\'s paper records',
+                'Delete their identities and disappear',
+                'Open an arcade at Coney Island',
+            ],
             correctAnswer: 'Blow up the buildings housing E Corp\'s paper records'
         }
     ],
@@ -97,7 +225,6 @@ var triviaGame = {
         while (0 !== currentIdx) {
             randomIdx = Math.floor(Math.random() * currentIdx);
             currentIdx -= 1;
-
             // And swap it with the current element.
             temp = arr[currentIdx];
             arr[currentIdx] = arr[randomIdx];
@@ -125,40 +252,45 @@ function gameInit() {
     audio.play();
     // shuffle questions
     triviaGame.questions = triviaGame.shuffle(triviaGame.questions);
-    // setup cards
-    cardFront(0);
-    cardBack(1);
+    // shuffle answers
+    triviaGame.questions.forEach(question => {
+        question.answers = triviaGame.shuffle(question.answers);
+    });
+    cardFront(0, 0);
+    cardBack(1, 1400);
     triviaGame.currentQuestion = 1;
     time = 20;
     countdown = setInterval(timer, 1000);
 }
 
 // create the front of the card
-function cardFront(f) {
+// f: question index, t: time delay
+function cardFront(f, t) {
     var frontContent = `
             <input id="fQid" class="hidden" type="text" name="question-index" value="${f}" hidden>
             <h2 class="the-question">${triviaGame.questions[f].question}</h2>
-            <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answer1}"> <span class="h4"> ${triviaGame.questions[f].answer1}</span></label></div>
-            <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answer2}"> <span class="h4"> ${triviaGame.questions[f].answer2}</span></label></div>
-            <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answer3}"> <span class="h4"> ${triviaGame.questions[f].answer3}</span></label></div>
-            <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answer4}"> <span class="h4"> ${triviaGame.questions[f].answer4}</span></label></div>
+            <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answers[0]}"> <span class="h4"> ${triviaGame.questions[f].answers[0]}</span></label></div>
+            <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answers[1]}"> <span class="h4"> ${triviaGame.questions[f].answers[1]}</span></label></div>
+            <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answers[2]}"> <span class="h4"> ${triviaGame.questions[f].answers[2]}</span></label></div>
+            <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answers[3]}"> <span class="h4"> ${triviaGame.questions[f].answers[3]}</span></label></div>
             <button id="SubmitFront" class="btn btn-trivia" onclick="submitFront()">Submit</button>
     `;
-    front.html(frontContent);
+    setTimeout(function() { front.html(frontContent) }, t);
 }
 
 // create the back of the card
-function cardBack(b) {
+// f: question index, t: time delay
+function cardBack(b, t) {
     var backContent = `
             <input id="bQid" class="hidden" type="text" name="question-index" value="${b}" hidden>
             <h2 class="the-question">${triviaGame.questions[b].question}</h2>
-            <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answer1}"> <span class="h4"> ${triviaGame.questions[b].answer1}</span></label></div>
-            <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answer2}"> <span class="h4"> ${triviaGame.questions[b].answer2}</span></label></div>
-            <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answer3}"> <span class="h4"> ${triviaGame.questions[b].answer3}</span></label></div>
-            <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answer4}"> <span class="h4"> ${triviaGame.questions[b].answer4}</span></label></div>
+            <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answers[0]}"> <span class="h4"> ${triviaGame.questions[b].answers[0]}</span></label></div>
+            <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answers[1]}"> <span class="h4"> ${triviaGame.questions[b].answers[1]}</span></label></div>
+            <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answers[2]}"> <span class="h4"> ${triviaGame.questions[b].answers[2]}</span></label></div>
+            <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answers[3]}"> <span class="h4"> ${triviaGame.questions[b].answers[3]}</span></label></div>
             <button id="SubmitBack" class="btn btn-trivia" onclick="submitBack()">Submit</button>
     `;
-    back.html(backContent);
+    setTimeout(function() { back.html(backContent) }, t);
 }
 
 // submit answer for the front of the card
@@ -293,10 +425,10 @@ function flip() {
     if (triviaGame.currentQuestion < triviaGame.questions.length) {
         var nextQuestion = triviaGame.currentQuestion;
         if (cardInner.hasClass('flipped')) {
-            cardFront(nextQuestion);
+            cardFront(nextQuestion, 1400);
             triviaGame.currentSide = 'Front';
         } else {
-            cardBack(nextQuestion);
+            cardBack(nextQuestion, 1400);
             triviaGame.currentSide = 'Back';
         }
     }
@@ -334,12 +466,16 @@ function resetGame() {
     $('#Results').remove();
     // shuffle questions
     triviaGame.questions = triviaGame.shuffle(triviaGame.questions);
+    // shuffle answers
+    triviaGame.questions.forEach(question => {
+        question.answers = triviaGame.shuffle(question.answers);
+    });
     // display first card
     front.show();
     back.show();
     // setup cards
-    cardFront(0);
-    cardBack(1);
+    cardFront(0, 0);
+    cardBack(1, 1400);
     triviaGame.currentQuestion = 1;
 }
 

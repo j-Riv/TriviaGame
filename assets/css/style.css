@@ -43,6 +43,7 @@ body #Wrapper .question-display .flip-card .flip-card-inner {
   transition: transform 1.4s;
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  font-family: 'Roboto', sans-serif;
 }
 
 body #Wrapper .question-display .flip-card .flip-card-inner .flip-card-front {
@@ -54,6 +55,8 @@ body #Wrapper .question-display .flip-card .flip-card-inner .flip-card-front {
   color: #ffffff;
   z-index: 2;
   border: 2px solid #690422;
+  padding: 15px;
+  box-sizing: border-box;
 }
 
 body #Wrapper .question-display .flip-card .flip-card-inner .flip-card-back {
@@ -66,6 +69,8 @@ body #Wrapper .question-display .flip-card .flip-card-inner .flip-card-back {
   transform: rotateY(180deg);
   z-index: 1;
   border: 2px solid #690422;
+  padding: 15px;
+  box-sizing: border-box;
 }
 
 body #Wrapper .question-display .flip-card .flip-card-inner .radio {

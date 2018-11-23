@@ -48,6 +48,7 @@
                         transition: transform 1.4s;
                         transform-style: preserve-3d;
                         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                        font-family: 'Roboto', sans-serif;
                         .flip-card-front {
                             position: absolute;
                             width: 100%;
@@ -57,6 +58,8 @@
                             color: $white;
                             z-index: 2;
                             border: 2px solid $maroon;
+                            padding: 15px;
+                            box-sizing: border-box;
                         }
                         .flip-card-back {
                             position: absolute;
@@ -68,6 +71,8 @@
                             transform: rotateY(180deg);
                             z-index: 1;
                             border: 2px solid $maroon;
+                            padding: 15px;
+                            box-sizing: border-box;
                         }
                         .radio {
                             cursor: pointer;
