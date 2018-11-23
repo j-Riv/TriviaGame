@@ -11,6 +11,7 @@ body {
   background: url(../images/the-grid.jpg);
   background-color: #000000;
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
 }
 
@@ -33,6 +34,7 @@ body #Wrapper .question-display .flip-card {
 
 body #Wrapper .question-display .flip-card .timer {
   color: #690422;
+  height: 24px;
 }
 
 body #Wrapper .question-display .flip-card .flip-card-inner {

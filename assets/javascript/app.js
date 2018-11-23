@@ -1,6 +1,7 @@
 var triviaGame = {
     correctCount: 0,
     incorrectCount: 0,
+    startMsg: 'Hello Friend',
     correctAnswerMsg: 'You are correct',
     incorrectAnswerMsg: 'You have selected the wrong answer',
     timesUpMsg: 'You are too slow, you have run out of time',
@@ -410,7 +411,7 @@ function start() {
         <img src="assets/images/fsociety.jpg" alt="F Society" />
         <p id="Msg"></p>
         <button id="Start" class="btn btn-trivia" onclick="gameInit()">Start</button>
-        <script>showText("#Msg", "Destruction Initiated", 0, 200);</script>
+        <script>showText("#Msg", "${triviaGame.startMsg}", 0, 200);</script>
     </div>
     `;
     back.html(content);

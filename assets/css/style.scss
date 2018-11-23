@@ -17,7 +17,7 @@
         background: url(../images/the-grid.jpg);
         background-color: $black;
         background-repeat: no-repeat;
-        // background-position: center;
+        background-position: center;
         background-size: cover;
         #Wrapper {
             #Banner {
@@ -39,6 +39,7 @@
                     margin: auto;
                     .timer {
                         color: $maroon;
+                        height: 24px;
                     }
                     .flip-card-inner {
                         position: relative;
