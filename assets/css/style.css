@@ -73,6 +73,16 @@ body #Wrapper .question-display .flip-card .flip-card-inner .radio {
   color: #690422;
 }
 
+body #Wrapper .question-display .flip-card .flip-card-inner .radio .answer {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+body #Wrapper .question-display .flip-card .flip-card-inner .radio .answer span {
+  cursor: pointer;
+}
+
 body #Wrapper .question-display .flip-card .flip-card-inner.flipped {
   transform: rotateY(180deg);
 }
@@ -126,6 +136,11 @@ body #Wrapper .question-display .flip-card .flip-card-inner .correct-answer {
 body .btn {
   text-transform: uppercase;
   cursor: pointer;
+}
+
+body .selected {
+  background-color: #690422;
+  color: #ffffff !important;
 }
 
 /* media queries */

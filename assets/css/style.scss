@@ -72,6 +72,14 @@
                         .radio {
                             cursor: pointer;
                             color: $maroon;
+                            .answer {
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                appearance: none;
+                                span {
+                                    cursor: pointer;
+                                }
+                            }
                         }
                         &.flipped {
                             transform: rotateY(180deg);
@@ -124,6 +132,10 @@
         .btn {
             text-transform: uppercase;
             cursor: pointer;
+        }
+        .selected {
+            background-color: $maroon;
+            color: $white !important;
         }
     }
     /* media queries */

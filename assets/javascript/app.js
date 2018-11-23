@@ -107,7 +107,7 @@ var triviaGame = {
     }
 }
 
-// dom selectors
+// dom selectors & variables
 var wrapper = $('#Wrapper');
 var questionDisplay = $('.question-display');
 var card = $('.flip-card');
@@ -133,97 +133,119 @@ function gameInit() {
     countdown = setInterval(timer, 1000);
 }
 
+// create the front of the card
 function cardFront(f) {
     var frontContent = `
             <input id="fQid" class="hidden" type="text" name="question-index" value="${f}" hidden>
             <h2 class="the-question">${triviaGame.questions[f].question}</h2>
-            <div class="radio"><label><input class="front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answer1}"> <span class="h4"> ${triviaGame.questions[f].answer1}</span></label></div>
-            <div class="radio"><label><input class="front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answer2}"> <span class="h4"> ${triviaGame.questions[f].answer2}</span></label></div>
-            <div class="radio"><label><input class="front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answer3}"> <span class="h4"> ${triviaGame.questions[f].answer3}</span></label></div>
-            <div class="radio"><label><input class="front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answer4}"> <span class="h4"> ${triviaGame.questions[f].answer4}</span></label></div>
+            <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answer1}"> <span class="h4"> ${triviaGame.questions[f].answer1}</span></label></div>
+            <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answer2}"> <span class="h4"> ${triviaGame.questions[f].answer2}</span></label></div>
+            <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answer3}"> <span class="h4"> ${triviaGame.questions[f].answer3}</span></label></div>
+            <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answer4}"> <span class="h4"> ${triviaGame.questions[f].answer4}</span></label></div>
             <button id="SubmitFront" class="btn btn-trivia" onclick="submitFront()">Submit</button>
     `;
     front.html(frontContent);
 }
 
+// create the back of the card
 function cardBack(b) {
     var backContent = `
             <input id="bQid" class="hidden" type="text" name="question-index" value="${b}" hidden>
             <h2 class="the-question">${triviaGame.questions[b].question}</h2>
-            <div class="radio"><label><input class="back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answer1}"> <span class="h4"> ${triviaGame.questions[b].answer1}</span></label></div>
-            <div class="radio"><label><input class="back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answer2}"> <span class="h4"> ${triviaGame.questions[b].answer2}</span></label></div>
-            <div class="radio"><label><input class="back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answer3}"> <span class="h4"> ${triviaGame.questions[b].answer3}</span></label></div>
-            <div class="radio"><label><input class="back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answer4}"> <span class="h4"> ${triviaGame.questions[b].answer4}</span></label></div>
+            <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answer1}"> <span class="h4"> ${triviaGame.questions[b].answer1}</span></label></div>
+            <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answer2}"> <span class="h4"> ${triviaGame.questions[b].answer2}</span></label></div>
+            <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answer3}"> <span class="h4"> ${triviaGame.questions[b].answer3}</span></label></div>
+            <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answer4}"> <span class="h4"> ${triviaGame.questions[b].answer4}</span></label></div>
             <button id="SubmitBack" class="btn btn-trivia" onclick="submitBack()">Submit</button>
     `;
     back.html(backContent);
 }
 
+// submit answer for the front of the card
 function submitFront() {
+    // stop timer
     clearInterval(countdown);
+    // set vars
     var idx = $('#fQid').val();
     var answer = null;
     var content = '';
+    // get answer
     if ($('.front-answer').is(':checked')) {
         answer = $('.front-answer:checked').val();
     }
+    // check answer & create card content
     if (answer === triviaGame.questions[idx].correctAnswer) {
         content = `
-        <h1>${triviaGame.correctAnswerMsg}</h1>
-        <button id="Next" class="btn btn-trivia" onclick="flip()">Next</button>
-    `;
+            <h1>${triviaGame.correctAnswerMsg}</h1>
+            <button id="Next" class="btn btn-trivia" onclick="flip()">Next</button>
+        `;
         triviaGame.correctCount++;
-    } else {
+    }
+    // incorrect
+    else {
         content = `
-        <h1>${triviaGame.incorrectAnswerMsg}</h1>
-        <p>The correct answer was</p>
-        <p class="correct-answer">${triviaGame.questions[idx].correctAnswer}</p>
-        <button id="Next" class="btn btn-trivia" onclick="flip()">Next</button>
-    `;
+            <h1>${triviaGame.incorrectAnswerMsg}</h1>
+            <p>The correct answer was</p>
+            <p class="correct-answer">${triviaGame.questions[idx].correctAnswer}</p>
+            <button id="Next" class="btn btn-trivia" onclick="flip()">Next</button>
+        `;
         triviaGame.incorrectCount++;
     }
+    // insert card content
     front.html(content);
-
-    // end game
+    // check if game is over
     if (triviaGame.currentQuestionIdx >= triviaGame.questions.length - 1) {
+        // end game
         gameOver();
     }
 }
 
+// submit answer for the back of the card
 function submitBack() {
+    // stop timer
     clearInterval(countdown);
+    // set vars
     var idx = $('#bQid').val();
     var answer = null;
     var content = '';
+    // get answer
     if ($('.back-answer').is(':checked')) {
         answer = $('.back-answer:checked').val();
     }
+    // check answer & create card content
     if (answer === triviaGame.questions[idx].correctAnswer) {
         content = `
-                <h1>${triviaGame.correctAnswerMsg}</h1>
-                <button id="Next" class="btn btn-trivia" onclick="flip()">Next</button>
-            `;
+            <h1>${triviaGame.correctAnswerMsg}</h1>
+            <button id="Next" class="btn btn-trivia" onclick="flip()">Next</button>
+        `;
         triviaGame.correctCount++;
-    } else {
+    }
+    // incorrect 
+    else {
         content = `
-                <h1>${triviaGame.incorrectAnswerMsg}</h1>
-                <p>The correct answer was</p>
-                <p class="correct-answer">${triviaGame.questions[idx].correctAnswer}</p>
-                <button id="Next" class="btn btn-trivia" onclick="flip()">Next</button>
-            `;
+            <h1>${triviaGame.incorrectAnswerMsg}</h1>
+            <p>The correct answer was</p>
+            <p class="correct-answer">${triviaGame.questions[idx].correctAnswer}</p>
+            <button id="Next" class="btn btn-trivia" onclick="flip()">Next</button>
+        `;
         triviaGame.incorrectCount++;
     }
+    // insert card content
     back.html(content);
-    // end game
+    // check if game is over
     if (triviaGame.currentQuestionIdx >= triviaGame.questions.length - 1) {
+        // end game
         gameOver();
     }
 }
 
+// time is up --> need to fix --> currently checking what side twice.
 function timeUp() {
     console.log('Time is up.');
+    // set variables
     var content = '';
     var idx;
+    // check what side of card is visible
     if (triviaGame.currentSide === 'Front') {
         idx = $('#fQid').val();
     } else {
@@ -240,9 +262,8 @@ function timeUp() {
         `;
     triviaGame.incorrectCount++;
     // check what side of card is visible
-    if (cardInner.hasClass('flipped')) {
+    if (triviaGame.currentSide === 'Front') {
         // back
-
         back.html(content);
     }
     // front
@@ -261,10 +282,14 @@ function timeUp() {
     }
 }
 
+// flips card
 function flip() {
+    // flip card
     cardInner.toggleClass('flipped');
+    // increase current question & current question index
     triviaGame.currentQuestion = triviaGame.currentQuestion + 1;
     triviaGame.currentQuestionIdx = triviaGame.currentQuestionIdx + 1;
+    // if current question is not the last question flip the card
     if (triviaGame.currentQuestion < triviaGame.questions.length) {
         var nextQuestion = triviaGame.currentQuestion;
         if (cardInner.hasClass('flipped')) {
@@ -280,10 +305,12 @@ function flip() {
 }
 
 function gameOver() {
-    // empty card
+    // flip card
     cardInner.removeClass('flipped');
+    // hide card contents
     front.hide();
     back.hide();
+    // create results card content
     var content = `
         <div id="Results">
             <h1>Results</h1>
@@ -292,15 +319,22 @@ function gameOver() {
             <button id="Reset" class="btn btn-trivia" onclick="resetGame()">Restart</button>
         </div>
     `;
+    // append results card content
     cardInner.append(content);
 }
 
+// resets game so you don't have to refresh
 function resetGame() {
+    // reset variables
     triviaGame.correctCount = 0;
     triviaGame.incorrectCount = 0;
     triviaGame.currentQuestionIdx = 0;
     triviaGame.currentQuestion = 0;
+    // remove results card
     $('#Results').remove();
+    // shuffle questions
+    triviaGame.questions = triviaGame.shuffle(triviaGame.questions);
+    // display first card
     front.show();
     back.show();
     // setup cards
@@ -309,6 +343,7 @@ function resetGame() {
     triviaGame.currentQuestion = 1;
 }
 
+// timer used to countdown time when answering a question
 function timer() {
     if (time > 0) {
         time--;
@@ -319,6 +354,7 @@ function timer() {
     }
 }
 
+// timer used to flip to next question once you run out of time
 function timerFlip() {
     if (time > 0) {
         time--;
@@ -329,10 +365,7 @@ function timerFlip() {
     }
 }
 
-// var displayName = <? php echo json_encode($displayName); ?>;
-// showText("#greeting", "Hello, " + displayName + '. Please select the Dept you want to view Requests for. Your Dept has been set as the default view.', 0, 100);
-
-
+// typewriter style function
 function showText(target, message, index, interval) {
     if (index < message.length) {
         jQuery(target).append(message[index++]);
@@ -342,8 +375,7 @@ function showText(target, message, index, interval) {
     }
 }
 
-
-// gameInit();
+// start the game and play Mr Robot Theme Song
 function start() {
     var content = `
     <div id="Start">
@@ -355,5 +387,12 @@ function start() {
     `;
     back.html(content);
 }
+
+// bind click function to dynamically created radio buttons
+$(document).on('click', '.radio', function() {
+    console.log('you clicked me.');
+    $('.radio').removeClass('selected');
+    $(this).addClass('selected');
+});
 
 start();
