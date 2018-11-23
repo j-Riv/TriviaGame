@@ -414,7 +414,7 @@ function start() {
         <script>showText("#Msg", "${triviaGame.startMsg}", 0, 200);</script>
     </div>
     `;
-    back.html(content);
+    front.html(content);
 }
 
 // bind click function to dynamically created radio buttons
