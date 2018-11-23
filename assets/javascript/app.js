@@ -368,7 +368,7 @@ function resetGame() {
     back.show();
     // setup cards
     cardFront(0, 0);
-    cardBack(1, 1400);
+    cardBack(1, 700);
     triviaGame.currentQuestion = 1;
 }
 
