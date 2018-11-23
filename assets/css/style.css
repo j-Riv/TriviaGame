@@ -21,6 +21,7 @@ body #Wrapper #Banner img {
   width: 800px;
   max-width: 80%;
   height: auto;
+  cursor: pointer;
 }
 
 body #Wrapper .question-display .flip-card {
