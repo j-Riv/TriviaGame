@@ -203,7 +203,6 @@ function cardBack(b, t) {
 function submitFront() {
     // stop timer
     clearInterval(countdown);
-    clearInterval(flipMe);
     // set vars
     var idx = $('#fQid').val();
     var answer = null;
@@ -248,7 +247,6 @@ function submitFront() {
 function submitBack() {
     // stop timer
     clearInterval(countdown);
-    clearInterval(flipMe);
     // set vars
     var idx = $('#bQid').val();
     var answer = null;
@@ -334,6 +332,8 @@ function timeUp() {
 
 // flips card
 function flip() {
+    // stop timer
+    clearInterval(flipMe);
     var t;
     if (triviaGame.isMobile) {
         t = 0;
