@@ -86,9 +86,9 @@ var triviaGame = {
                 'Elliot\'s Dad',
                 'A delusion of Elliot\'s Mind',
                 'Elliot',
-                'All of the Above',
+                'All of these',
             ],
-            correctAnswer: 'All of the Above'
+            correctAnswer: 'All of these'
         },
         {
             question: 'What did the Five/Nine hack actually do?',
@@ -176,7 +176,7 @@ function cardFront(f, t) {
             <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answers[1]}"> <span class="h4"> ${triviaGame.questions[f].answers[1]}</span></label></div>
             <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answers[2]}"> <span class="h4"> ${triviaGame.questions[f].answers[2]}</span></label></div>
             <div class="radio"><label><input class="answer front-answer" type="radio" name="front-answer" value="${triviaGame.questions[f].answers[3]}"> <span class="h4"> ${triviaGame.questions[f].answers[3]}</span></label></div>
-            <button id="SubmitFront" class="btn btn-trivia" onclick="submitFront()">Submit</button>
+            <button id="SubmitFront" class="btn btn-trivia" onclick="submitFront()">Select</button>
     `;
     setTimeout(function() { front.html(frontContent) }, t);
 }
@@ -194,7 +194,7 @@ function cardBack(b, t) {
             <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answers[1]}"> <span class="h4"> ${triviaGame.questions[b].answers[1]}</span></label></div>
             <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answers[2]}"> <span class="h4"> ${triviaGame.questions[b].answers[2]}</span></label></div>
             <div class="radio"><label><input class="answer back-answer" type="radio" name="back-answer" value="${triviaGame.questions[b].answers[3]}"> <span class="h4"> ${triviaGame.questions[b].answers[3]}</span></label></div>
-            <button id="SubmitBack" class="btn btn-trivia" onclick="submitBack()">Submit</button>
+            <button id="SubmitBack" class="btn btn-trivia" onclick="submitBack()">Select</button>
     `;
     setTimeout(function() { back.html(backContent) }, t);
 }
@@ -203,6 +203,7 @@ function cardBack(b, t) {
 function submitFront() {
     // stop timer
     clearInterval(countdown);
+    clearInterval(flipMe);
     // set vars
     var idx = $('#fQid').val();
     var answer = null;
@@ -236,12 +237,18 @@ function submitFront() {
         // end game
         gameOver();
     }
+    // timer if game not over
+    else {
+        time = 7;
+        flipMe = setInterval(timerFlip, 1000);
+    }
 }
 
 // submit answer for the back of the card
 function submitBack() {
     // stop timer
     clearInterval(countdown);
+    clearInterval(flipMe);
     // set vars
     var idx = $('#bQid').val();
     var answer = null;
@@ -274,6 +281,11 @@ function submitBack() {
     if (triviaGame.currentQuestionIdx >= triviaGame.questions.length - 1) {
         // end game
         gameOver();
+    }
+    // timer if game not over
+    else {
+        time = 7;
+        flipMe = setInterval(timerFlip, 1000);
     }
 }
 
@@ -395,6 +407,8 @@ function resetGame() {
     front.show();
     back.show();
     triviaGame.currentQuestion = 1;
+    time = 20;
+    countdown = setInterval(timer, 1000);
 }
 
 // timer used to countdown time when answering a question
