@@ -166,7 +166,8 @@
                 }
             }
             
-            @media only screen and (max-width: 768px) {
+            // disable animations on screen widths up to 1024px (iPad)
+            @media only screen and (max-width: 1024px) {
                 body {
                     #Wrapper {
                         .question-display {

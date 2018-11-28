@@ -163,7 +163,7 @@ body .selected {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
   body #Wrapper .question-display .flip-card {
     height: 500px;
   }
