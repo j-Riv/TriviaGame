@@ -140,7 +140,7 @@ body .selected {
 }
 
 /* media queries */
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 1025px) {
   body #Wrapper .question-display .flip-card {
     perspective: 1000px;
   }
