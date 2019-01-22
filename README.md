@@ -4,6 +4,8 @@ A trivia game web app created to showcase use of jQuery, javascript and timed fu
 
 **Link** [TriviaGame](https://j-riv.github.io/TriviaGame)
 
+![Trivia Game](/assets/images/screenshots/trivia-game-screenshot.jpg)
+
 ## Tecnologies Used:
 * Javascript
 * jQuery
