@@ -1,6 +1,6 @@
 # TriviaGame
 
-A trivia game web app created to showcase use of jQuery, javascript and timed funcitons.
+A trivia game web app created to showcase use of jQuery, javascript and timed functions.
 
 **Link** [TriviaGame](https://j-riv.github.io/TriviaGame)
 
