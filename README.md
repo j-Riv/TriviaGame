@@ -6,10 +6,6 @@ A trivia game web app created to showcase use of jQuery, javascript and timed fu
 
 ![Trivia Game](/assets/images/screenshots/trivia-game-screenshot.jpg)
 
-## Tecnologies Used:
-* Javascript
-* jQuery
-
 ## Built With:
 * [Bootstrap](https://getbootstrap.com/)
 * [jQuery](https://jquery.com/)
